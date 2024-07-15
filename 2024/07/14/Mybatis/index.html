@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Mybatis | 小姜的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Mybatis的使用Mybatis的使用Spring作为一款轻量级的，低侵入的IOC容器框架， 除了可以帮助我们管理好业务Bean，提供更加易用且功能强大的Web控制器以外，Spring也提供了对应的 数据处理模块 也就是Spring data模块， 我们在之前已经有使用过Spring data jdbc， 除了这种Spring自己按照data标准进行封装的组件以外，Spring 对第三方的 持久">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis">
+<meta property="og:url" content="http://example.com/2024/07/14/Mybatis/index.html">
+<meta property="og:site_name" content="小姜的博客">
+<meta property="og:description" content="Mybatis的使用Mybatis的使用Spring作为一款轻量级的，低侵入的IOC容器框架， 除了可以帮助我们管理好业务Bean，提供更加易用且功能强大的Web控制器以外，Spring也提供了对应的 数据处理模块 也就是Spring data模块， 我们在之前已经有使用过Spring data jdbc， 除了这种Spring自己按照data标准进行封装的组件以外，Spring 对第三方的 持久">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-14T07:34:54.000Z">
+<meta property="article:modified_time" content="2024-07-14T08:00:13.459Z">
+<meta property="article:author" content="Jiang">
+<meta property="article:tag" content="Mybatis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@coolwuxing">
+  
+    <link rel="alternative" href="/atom.xml" title="小姜的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-43935113-3', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div id="header">
+  <div id="banner">
+    <div id="cover"></div>
+    <div id="stars"></div>
+  </div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">小姜的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="outer">
+        <section id="main"><article id="post-Mybatis" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/07/14/Mybatis/" class="article-date">
+  <time datetime="2024-07-14T07:34:54.000Z" itemprop="datePublished">2024-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Mybatis
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Mybatis的使用"><a href="#Mybatis的使用" class="headerlink" title="Mybatis的使用"></a>Mybatis的使用</h1><h2 id="Mybatis的使用-1"><a href="#Mybatis的使用-1" class="headerlink" title="Mybatis的使用"></a>Mybatis的使用</h2><p>Spring作为一款轻量级的，低侵入的IOC容器框架， 除了可以帮助我们管理好业务Bean，提供更加易用且功能强大的Web控制器以外，Spring也提供了对应的 <code>数据处理模块</code> 也就是Spring data模块， 我们在之前已经有使用过Spring data jdbc， 除了这种Spring自己按照data标准进行封装的组件以外，Spring 对第三方的 持久层框架也有整合支持，今天我们就要学习如何在Spring的环境下，使用三方的持久层框架，帮助我们进一步的优化持久层开发。</p>
+<p>1 什么是Mybatis</p>
+<p>它是一款半自动的<strong>ORM</strong>持久层框架，具有较高的SQL灵活性，支持高级映射(关联)，动态SQL，延迟加载，缓存等特性且数据库无关性较低。</p>
+<p>什么是ORM？</p>
+<p>Object Relation Mapping， 对象关系映射。 对象就是Java中的对象， 关系指的就是数据库中的关系模型，对象关系映射，指的就是Java对象和数据库关系模型之间建立一种对应关系</p>
+<p>为什么说Mybatis是半自动ORM框架呢?</p>
+<p>其实ORM最关键的核心就是数据源—》Java对象， 所谓的自动ORM就是在定义好对象和数据源的关系后，会自动将数据映射到对象上，极大简化了我们在处理结果集的繁琐步骤，所谓半自动即 Mybatis需要手动编写SQL语句。而全自动的ORM框架甚至都不需要去手动编写SQL语句（Hibernate，JPA）</p>
+<p>使用Mybatis</p>
+<p>导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--        mybatis 核心库--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.13<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        Spring data 整合Mybatis --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>配置Mybatis 核心对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">SqlSessionFactoryBean <span class="title function_">sqlSessionFactoryBean</span><span class="params">(<span class="meta">@Autowired</span> DataSource dataSource)</span>&#123;</span><br><span class="line">    <span class="comment">//SQLSession: SQL会话</span></span><br><span class="line">    <span class="comment">//JDBC: 建立连接Conn 陈述命令(statement) 处理结果(resultSet)</span></span><br><span class="line">    <span class="type">SqlSessionFactoryBean</span> <span class="variable">factoryBean</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBean</span>();</span><br><span class="line">    factoryBean.setDataSource(dataSource);</span><br><span class="line">    <span class="keyword">return</span> factoryBean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义mapper，通过注解完成查询</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserMapper</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Select(&quot;select * from user where username =#&#123;username&#125;&quot;)</span></span><br><span class="line">    <span class="comment">// 自动处理结果集---》 对象</span></span><br><span class="line">    User <span class="title function_">findByUsername</span><span class="params">(String username)</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在启动配置类上加上mapper扫描注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="meta">@EnableTransactionManagement</span>   <span class="comment">// 启用事务管理</span></span><br><span class="line"><span class="meta">@MapperScan(&quot;com.softeem.dao&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppConfig</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>mybatis 映射文件的使用</p>
+<p>在使用Mybatis时，更推荐是Mybatis的mapper xml来维护SQL， xml更加强大易用</p>
+<p>定义接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.softeem.mapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.softeem.entity.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Param;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserMapper</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 带参数查询</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> username</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    User <span class="title function_">findByUsername</span><span class="params">(String username)</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 多参数查询</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> username</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> password</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    User <span class="title function_">findByUsernameAndPassword</span><span class="params">(</span></span><br><span class="line"><span class="params">            <span class="meta">@Param(&quot;username&quot;)</span> String username,</span></span><br><span class="line"><span class="params">            <span class="meta">@Param(&quot;password&quot;)</span> String password)</span>;</span><br><span class="line"><span class="comment">//    /**</span></span><br><span class="line"><span class="comment">//     * 返回集合</span></span><br><span class="line"><span class="comment">//     * @return</span></span><br><span class="line"><span class="comment">//     */</span></span><br><span class="line">    List&lt;User&gt; <span class="title function_">findUsers</span><span class="params">()</span>;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 添加</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> user</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">addUser</span><span class="params">(User user)</span>;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 修改</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> user</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">updateUser</span><span class="params">(User user)</span>;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 删除</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">deleteUser</span><span class="params">(Integer id)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>修改配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">SqlSessionFactoryBean <span class="title function_">sqlSessionFactoryBean</span><span class="params">(<span class="meta">@Autowired</span> DataSource dataSource)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">SqlSessionFactoryBean</span> <span class="variable">sessionFactoryBean</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBean</span>();</span><br><span class="line">    sessionFactoryBean.setDataSource(dataSource);</span><br><span class="line">    <span class="comment">// 定义映射文件的位置</span></span><br><span class="line">    sessionFactoryBean.setMapperLocations(</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">PathMatchingResourcePatternResolver</span>()</span><br><span class="line">                    .getResources(<span class="string">&quot;classpath:mapper/*.xml&quot;</span>)</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">return</span> sessionFactoryBean;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义mapper文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">mapper标签： 表示该文件为映射文件</span></span><br><span class="line"><span class="comment">namespace： 指定映射的接口位置 具体的包名地址</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.softeem.mapper.UserMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 通用查询映射结果 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;BaseResultMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.softeem.entity.User&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;id&quot;</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;username&quot;</span> <span class="attr">property</span>=<span class="string">&quot;username&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;password&quot;</span> <span class="attr">property</span>=<span class="string">&quot;password&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 通用查询结果列 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;Base_Column_List&quot;</span>&gt;</span></span><br><span class="line">        id, username, password</span><br><span class="line">    <span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">resultType: 指定当前返回结果需要进行ORM的类型是什么</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findByUsername&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;BaseResultMap&quot;</span>&gt;</span></span><br><span class="line">        SELECT <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Base_Column_List&quot;</span>/&gt;</span> from user</span><br><span class="line">        where username =#&#123;username&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    坑： --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findByUsernameAndPassword&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;BaseResultMap&quot;</span>&gt;</span></span><br><span class="line">        SELECT <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Base_Column_List&quot;</span>/&gt;</span> from user</span><br><span class="line">        where username =#&#123;username&#125; and password=#&#123;password&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findUsers&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.softeem.entity.User&quot;</span>&gt;</span></span><br><span class="line">        SELECT <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Base_Column_List&quot;</span>/&gt;</span> from user</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">new 瞬时状态</span></span><br><span class="line"><span class="comment">add 持久状态（对象和数据库依旧关联）</span></span><br><span class="line"><span class="comment">session close new</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addUser&quot;</span> <span class="attr">useGeneratedKeys</span>=<span class="string">&quot;true&quot;</span> <span class="attr">keyProperty</span>=<span class="string">&quot;id&quot;</span>&gt;</span></span><br><span class="line">        insert into user(<span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Base_Column_List&quot;</span>/&gt;</span>)</span><br><span class="line">        values(null,#&#123;username&#125;,#&#123;password&#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateUser&quot;</span>&gt;</span></span><br><span class="line">        update user set username=#&#123;username&#125;,password=#&#123;password&#125;</span><br><span class="line">        where id =#&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;deleteUser&quot;</span>&gt;</span></span><br><span class="line">        delete from user where id =#&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Mybatis动态SQL"><a href="#Mybatis动态SQL" class="headerlink" title="Mybatis动态SQL"></a>Mybatis动态SQL</h2><p>动态SQL是Mybatis的强大特性之一。在JDBC或者其他类似框架中，我们总是需要去手动拼接SQL语句。根据不同的条件去拼接SQL是非常痛苦的工作。例如，拼接时需要确保添加了必要的空格，还要注意去掉列表最后一个列名的逗号。而动态SQL恰好解决了这一问题，可以根据场景动态构建查询。</p>
+<h3 id="动态SQL标签"><a href="#动态SQL标签" class="headerlink" title="动态SQL标签"></a>动态SQL标签</h3><table>
+<thead>
+<tr>
+<th>元素</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>if</td>
+<td>相当于Java 多重if结构</td>
+</tr>
+<tr>
+<td>choose(when otherwise)</td>
+<td>相当于Java if else if结构</td>
+</tr>
+<tr>
+<td>trim，where</td>
+<td>辅助元素</td>
+</tr>
+<tr>
+<td>foreach</td>
+<td>循环语句</td>
+</tr>
+<tr>
+<td>bind</td>
+<td>辅助语句</td>
+</tr>
+</tbody></table>
+<p>if 标签： 条件判断</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findBooksByParameters&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;BaseResultMap&quot;</span>&gt;</span></span><br><span class="line">          SELECT <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Base_Column_List&quot;</span>/&gt;</span> from book</span><br><span class="line">          where 1=1</span><br><span class="line">          <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title !=null&quot;</span>&gt;</span></span><br><span class="line">            and  title like concat(&#x27;%&#x27;,#&#123;title&#125;,&#x27;%&#x27;)</span><br><span class="line">          <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;press !=null&quot;</span>&gt;</span></span><br><span class="line">              and  press like concat(&#x27;%&#x27;,#&#123;press&#125;,&#x27;%&#x27;)</span><br><span class="line">          <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;author !=null&quot;</span>&gt;</span></span><br><span class="line">              and  author like concat(&#x27;%&#x27;,#&#123;author&#125;,&#x27;%&#x27;)</span><br><span class="line">          <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>where+if 标签</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;findBooksByParameters&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;BaseResultMap&quot;</span>&gt;</span></span><br><span class="line">       SELECT <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Base_Column_List&quot;</span>/&gt;</span> from book</span><br><span class="line">       <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title !=null&quot;</span>&gt;</span></span><br><span class="line">               and  title like concat(&#x27;%&#x27;,#&#123;title&#125;,&#x27;%&#x27;)</span><br><span class="line">           <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;press !=null&quot;</span>&gt;</span></span><br><span class="line">               and  press like concat(&#x27;%&#x27;,#&#123;press&#125;,&#x27;%&#x27;)</span><br><span class="line">           <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;author !=null&quot;</span>&gt;</span></span><br><span class="line">               and  author like concat(&#x27;%&#x27;,#&#123;author&#125;,&#x27;%&#x27;)</span><br><span class="line">           <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个 <code>where</code> 标签会知道如果它包含的标签中有返回值。它就会插入一个 where . 此外如果标签的返回内容是 AND或者OR开头的，则会被剔除。</p>
+<p>set 标签</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateBook&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    update book</span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;title != null&quot;</span>&gt;</span></span><br><span class="line">            title = #&#123;title&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;author != null&quot;</span>&gt;</span></span><br><span class="line">            title = #&#123;author&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;press != null&quot;</span>&gt;</span></span><br><span class="line">            title = #&#123;press&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;date != null&quot;</span>&gt;</span></span><br><span class="line">            title = #&#123;date&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;abs != null&quot;</span>&gt;</span></span><br><span class="line">            title = #&#123;abs&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;cover != null&quot;</span>&gt;</span></span><br><span class="line">            title = #&#123;cover&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;cid != null&quot;</span>&gt;</span></span><br><span class="line">            title = #&#123;cid&#125;,</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">    where id =#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>choose(when,otherwise)语句</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/07/14/Mybatis/" data-id="clyn7462k0001jw7d91yz4i3a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/07/15/springboot/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          springboot
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/07/14/spring-web/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">spring-web</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/07/15/springboot/">springboot</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/14/Mybatis/">Mybatis</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/14/spring-web/">spring-web</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/13/spring-aop/">spring-aop</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/12/spring-ioc/">spring-ioc</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <div id="footer">
+  
+  <div id='foot-stars'></div>
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Jiang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</div>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

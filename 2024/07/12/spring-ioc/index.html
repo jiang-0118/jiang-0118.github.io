@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>spring-ioc | 小姜的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是Spring？Spring是一个支持快速开发Java EE应用程序的框架。它提供了一系列底层容器和基础设施，并可以和大量常用的开源框架无缝集成，可以说是开发Java EE应用程序的必备。 IoC容器在学习Spring框架时，我们遇到的第一个也是最核心的概念就是容器。 什么是容器？容器是一种为某种特定组件的运行提供必要支持的一个软件环境。例如，Tomcat就是一个Servlet容器，它可以为S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring-ioc">
+<meta property="og:url" content="http://example.com/2024/07/12/spring-ioc/index.html">
+<meta property="og:site_name" content="小姜的博客">
+<meta property="og:description" content="什么是Spring？Spring是一个支持快速开发Java EE应用程序的框架。它提供了一系列底层容器和基础设施，并可以和大量常用的开源框架无缝集成，可以说是开发Java EE应用程序的必备。 IoC容器在学习Spring框架时，我们遇到的第一个也是最核心的概念就是容器。 什么是容器？容器是一种为某种特定组件的运行提供必要支持的一个软件环境。例如，Tomcat就是一个Servlet容器，它可以为S">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-12T14:07:03.000Z">
+<meta property="article:modified_time" content="2024-07-12T14:07:51.217Z">
+<meta property="article:author" content="Jiang">
+<meta property="article:tag" content="spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@coolwuxing">
+  
+    <link rel="alternative" href="/atom.xml" title="小姜的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-43935113-3', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div id="header">
+  <div id="banner">
+    <div id="cover"></div>
+    <div id="stars"></div>
+  </div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">小姜的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="outer">
+        <section id="main"><article id="post-spring-ioc" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/07/12/spring-ioc/" class="article-date">
+  <time datetime="2024-07-12T14:07:03.000Z" itemprop="datePublished">2024-07-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      spring-ioc
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是Spring？"><a href="#什么是Spring？" class="headerlink" title="什么是Spring？"></a>什么是Spring？</h2><p>Spring是一个支持快速开发Java EE应用程序的框架。它提供了一系列底层容器和基础设施，并可以和大量常用的开源框架无缝集成，可以说是开发Java EE应用程序的必备。</p>
+<h4 id="IoC容器"><a href="#IoC容器" class="headerlink" title="IoC容器"></a>IoC容器</h4><p>在学习Spring框架时，我们遇到的第一个也是最核心的概念就是容器。</p>
+<p>什么是容器？容器是一种为某种特定组件的运行提供必要支持的一个软件环境。例如，Tomcat就是一个Servlet容器，它可以为Servlet的运行提供运行环境。类似Docker这样的软件也是一个容器，它提供了必要的Linux环境以便运行一个特定的Linux进程。</p>
+<p>Spring提供的容器又称为IoC容器，什么是IoC？</p>
+<p>IoC全称Inversion of Control，直译为控制反转。</p>
+<p>举例说明：</p>
+<p>1.在xml导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--context容器依赖--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.7.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.编写一个HikariDataSource类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.softeem.data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Title</span>: HikariDataSource</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> Jiang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span> com.softeem.data</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2024/7/12 16:39</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>:</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//将该对象的配置交给容器处理</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HikariDataSource</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> Connection <span class="title function_">getConn</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>3.编写UserService类并获取HikariDataSource实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.softeem.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.softeem.data.HikariDataSource;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Title</span>: UserService</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> Jiang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span> com.softeem.service</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2024/7/12 16:42</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>:</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="comment">//依赖--&gt;耦合</span></span><br><span class="line">    <span class="comment">//private HikariDataSource hikariDataSource=new HikariDataSource();//实例化</span></span><br><span class="line">    <span class="comment">//自动装配</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> HikariDataSource hikariDataSource;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">getUser</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> hikariDataSource.getConn();</span><br><span class="line">        System.out.println(<span class="string">&quot;获取用户....&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在主配置类中创建容器，并从容器中获取实例对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.softeem;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.softeem.service.UserService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Title</span>: $&#123;NAME&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> Jiang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span> com.softeem</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2024/7/12 16:09</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>: $&#123;description&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@ComponentScan</span> <span class="comment">//组件扫描 扫描当前类所在包的所有类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppConfig</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//学习Spring前，通过实例化获取</span></span><br><span class="line">        <span class="comment">/*UserService userService = new UserService();</span></span><br><span class="line"><span class="comment">        userService.getUser();*/</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建容器</span></span><br><span class="line">        <span class="type">AnnotationConfigApplicationContext</span> <span class="variable">ctx</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AnnotationConfigApplicationContext</span>(AppConfig.class);</span><br><span class="line">        <span class="comment">//从容器中获取实例对象</span></span><br><span class="line">        <span class="type">UserService</span> <span class="variable">userService</span> <span class="operator">=</span> ctx.getBean(UserService.class);</span><br><span class="line">        <span class="type">UserService</span> <span class="variable">userService1</span> <span class="operator">=</span>(UserService)ctx.getBean(<span class="string">&quot;userService&quot;</span>);</span><br><span class="line">        System.out.println(userService==userService1);<span class="comment">//true 说明容器中默认是单例模式 可以通过@Scope(&quot;prototype&quot;)设置为原型，每次获取该Bean的实例都是新的，不再是唯一的单例</span></span><br><span class="line">        userService.getUser();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>IOC常用注解：</p>
+<p>@Autowire(通过名字自动装配，Spring容器会自动根据该注解在容器中查找与之匹配的实例，进行注入)</p>
+<p>@Component(将该类标记为Spring容器中的一个Bean，有Spring来进行实例化，管理和依赖注入) </p>
+<ul>
+<li>@Service(用于标记业务层Bean)</li>
+<li>@Repostory(用于标记持久层Bean)</li>
+<li>@Controller(用于标记控制器层Bean，Controller比较特殊，需要结合SpringWebMVC使用)</li>
+<li>@Configuration(用于标记配置类，有的时候需要通过Java类来定义一些配置，可以使用该注解来表达当前类是配置类)</li>
+</ul>
+<p>@ComponentScan(自动扫描并加载符合条件的组件类，使得这些类可以被Spring容器自动管理和装配)</p>
+<p>优点：</p>
+<p>1.无需实例化类，组件与组件之间不再产生耦合，实现解耦。</p>
+<p>2.有更好的扩展性</p>
+<h3 id="注入List"><a href="#注入List" class="headerlink" title="注入List"></a>注入List</h3><p>有些时候，我们会有一系列接口相同，不同实现类的Bean。</p>
+<p>例如：首先用两个类实现同一个接口的同一个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Msg</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">Msg</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SendMsg</span> <span class="keyword">implements</span> <span class="title class_">Msg</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">Msg</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;SendMsg&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GetMsg</span> <span class="keyword">implements</span> <span class="title class_">Msg</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">Msg</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;GetMsg&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后再将ProcessMsg用来验证</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ProcessMsg</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;Msg&gt; msg;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">processMsg</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (Msg m : msg) &#123;</span><br><span class="line">            System.out.println(m.Msg());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="因为Spring是通过扫描classpath获取到所有的Bean，而List是有序的，要指定List中Bean的顺序，可以加上-Order注解。"><a href="#因为Spring是通过扫描classpath获取到所有的Bean，而List是有序的，要指定List中Bean的顺序，可以加上-Order注解。" class="headerlink" title="因为Spring是通过扫描classpath获取到所有的Bean，而List是有序的，要指定List中Bean的顺序，可以加上@Order注解。"></a>因为Spring是通过扫描classpath获取到所有的Bean，而<code>List</code>是有序的，要指定<code>List</code>中Bean的顺序，可以加上<code>@Order</code>注解。</h3><h3 id="可选注入"><a href="#可选注入" class="headerlink" title="可选注入"></a>可选注入</h3><p>默认情况下，当我们标记了一个<code>@Autowired</code>后，Spring如果没有找到对应类型的Bean，它会抛出<code>NoSuchBeanDefinitionException</code>异常。</p>
+<p>可以给<code>@Autowired</code>增加一个<code>required = false</code>的参数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MailService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired(required = false)</span></span><br><span class="line">    <span class="type">ZoneId</span> <span class="variable">zoneId</span> <span class="operator">=</span> ZoneId.systemDefault();</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个参数告诉Spring容器，如果找到一个类型为<code>ZoneId</code>的Bean，就注入，如果找不到，就忽略。</p>
+<p>这种方式非常适合有定义就使用定义，没有就使用默认值的情况。</p>
+<h3 id="创建第三方Bean"><a href="#创建第三方Bean" class="headerlink" title="创建第三方Bean"></a>创建第三方Bean</h3><p>如果一个Bean不在我们自己的package管理之内，如何创建它？</p>
+<p>答案是我们自己在<code>@Configuration</code>类中编写一个Java方法创建并返回它，注意给方法标记一个<code>@Bean</code>注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span> <span class="comment">//定义配置类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DBConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    DataSource <span class="title function_">createDataSource</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//@Bean实例 名字(ID)</span></span><br><span class="line">        <span class="type">HikariConfig</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HikariConfig</span>();</span><br><span class="line">        config.setUsername(<span class="string">&quot;root&quot;</span>);</span><br><span class="line">        config.setPassword(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line">        config.setDriverClassName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">        config.setJdbcUrl(<span class="string">&quot;jdbc:mysql://localhost:3306/pay?serverTimezone=UTC&amp;allowMultiQueries=true&amp;characterEncoding=UTF-8&quot;</span>);</span><br><span class="line">        <span class="type">HikariDataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HikariDataSource</span>(config);</span><br><span class="line">        <span class="keyword">return</span> dataSource;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> DataSource dataSource;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">getConn</span><span class="params">()</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        System.out.println(dataSource.getConnection());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用别名"><a href="#使用别名" class="headerlink" title="使用别名"></a>使用别名</h3><p>默认情况下，对一种类型的Bean，容器只创建一个实例。但有些时候，我们需要对一种类型的Bean创建多个实例。例如，同时连接多个数据库，就必须创建多个<code>DataSource</code>实例。</p>
+<p>如果我们在<code>@Configuration</code>类中创建了多个同类型的Bean：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span> <span class="comment">//定义配置类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DBConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean(&quot;pay&quot;)</span></span><br><span class="line">    DataSource <span class="title function_">paySource</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//@Bean实例 名字(ID)</span></span><br><span class="line">        <span class="type">HikariConfig</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HikariConfig</span>();</span><br><span class="line">        config.setUsername(<span class="string">&quot;root&quot;</span>);</span><br><span class="line">        config.setPassword(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line">        config.setDriverClassName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">        config.setJdbcUrl(<span class="string">&quot;jdbc:mysql://localhost:3306/pay?serverTimezone=UTC&amp;allowMultiQueries=true&amp;characterEncoding=UTF-8&quot;</span>);</span><br><span class="line">        <span class="type">HikariDataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HikariDataSource</span>(config);</span><br><span class="line">        <span class="keyword">return</span> dataSource;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Bean(&quot;food&quot;)</span></span><br><span class="line">    DataSource <span class="title function_">foodSource</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//@Bean实例 名字(ID)</span></span><br><span class="line">        <span class="type">HikariConfig</span> <span class="variable">config</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HikariConfig</span>();</span><br><span class="line">        config.setUsername(<span class="string">&quot;root&quot;</span>);</span><br><span class="line">        config.setPassword(<span class="string">&quot;123456&quot;</span>);</span><br><span class="line">        config.setDriverClassName(<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>);</span><br><span class="line">        config.setJdbcUrl(<span class="string">&quot;jdbc:mysql://localhost:3306/food?serverTimezone=UTC&amp;allowMultiQueries=true&amp;characterEncoding=UTF-8&quot;</span>);</span><br><span class="line">        <span class="type">HikariDataSource</span> <span class="variable">dataSource</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">HikariDataSource</span>(config);</span><br><span class="line">        <span class="keyword">return</span> dataSource;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>@Qualifier注解在Spring5.X无效</p>
+<h3 id="使用FactoryBean"><a href="#使用FactoryBean" class="headerlink" title="使用FactoryBean"></a>使用FactoryBean</h3><p>我们在设计模式的<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1252599548343744/1281319170474017">工厂方法</a>中讲到，很多时候，可以通过工厂模式创建对象。Spring也提供了工厂模式，允许定义一个工厂，然后由工厂创建真正的Bean。</p>
+<p>用工厂模式创建Bean需要实现<code>FactoryBean</code>接口。我们观察下面的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ZoneIdFactoryBean</span> <span class="keyword">implements</span> <span class="title class_">FactoryBean</span>&lt;ZoneId&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">String</span> <span class="variable">zone</span> <span class="operator">=</span> <span class="string">&quot;Z&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> ZoneId <span class="title function_">getObject</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> ZoneId.of(zone);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Class&lt;?&gt; getObjectType() &#123;</span><br><span class="line">        <span class="keyword">return</span> ZoneId.class;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>当一个Bean实现了<code>FactoryBean</code>接口后，Spring会先实例化这个工厂，然后调用<code>getObject()</code>创建真正的Bean。<code>getObjectType()</code>可以指定创建的Bean的类型，因为指定类型不一定与实际类型一致，可以是接口或抽象类。</p>
+<p>因此，如果定义了一个<code>FactoryBean</code>，要注意Spring创建的Bean实际上是这个<code>FactoryBean</code>的<code>getObject()</code>方法返回的Bean。为了和普通Bean区分，我们通常都以<code>XxxFactoryBean</code>命名。</p>
+<p>由于可以用<code>@Bean</code>方法创建第三方Bean，本质上<code>@Bean</code>方法就是工厂方法，所以，<code>FactoryBean</code>已经用得越来越少了。</p>
+<p><code>FactoryBean</code>是工厂模式，<code>BeanFactory</code>是上层容器接口</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/07/12/spring-ioc/" data-id="clyn7462s0004jw7d17jn2t3v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/07/13/spring-aop/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          spring-aop
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/07/11/JVM%E7%9A%84%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JVM的学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/07/15/springboot/">springboot</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/14/Mybatis/">Mybatis</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/14/spring-web/">spring-web</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/13/spring-aop/">spring-aop</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/12/spring-ioc/">spring-ioc</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <div id="footer">
+  
+  <div id='foot-stars'></div>
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Jiang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</div>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>spring-aop | 小姜的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Spring AOP什么是AopAop是一种变成方式，它和OOP不同，OOP把系统看作是多个对象的交互，Aop把系统分解为不同的关注点，或者称之为切面(Aspect)  在不修改源代码的情况下，为业务织入额外的增强处理  实现AOP的方式有很多，例如JDK动态代理，静态代理都可以实现AOP的设计模式，Spring在IOC的环境下，可以快速的帮助我们实现相对简单易用的Aop 在学习如何使用Sprin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring-aop">
+<meta property="og:url" content="http://example.com/2024/07/13/spring-aop/index.html">
+<meta property="og:site_name" content="小姜的博客">
+<meta property="og:description" content="Spring AOP什么是AopAop是一种变成方式，它和OOP不同，OOP把系统看作是多个对象的交互，Aop把系统分解为不同的关注点，或者称之为切面(Aspect)  在不修改源代码的情况下，为业务织入额外的增强处理  实现AOP的方式有很多，例如JDK动态代理，静态代理都可以实现AOP的设计模式，Spring在IOC的环境下，可以快速的帮助我们实现相对简单易用的Aop 在学习如何使用Sprin">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-13T11:47:28.000Z">
+<meta property="article:modified_time" content="2024-07-13T11:49:20.496Z">
+<meta property="article:author" content="Jiang">
+<meta property="article:tag" content="spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@coolwuxing">
+  
+    <link rel="alternative" href="/atom.xml" title="小姜的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-43935113-3', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div id="header">
+  <div id="banner">
+    <div id="cover"></div>
+    <div id="stars"></div>
+  </div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">小姜的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="outer">
+        <section id="main"><article id="post-spring-aop" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/07/13/spring-aop/" class="article-date">
+  <time datetime="2024-07-13T11:47:28.000Z" itemprop="datePublished">2024-07-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      spring-aop
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Spring-AOP"><a href="#Spring-AOP" class="headerlink" title="Spring AOP"></a>Spring AOP</h1><h2 id="什么是Aop"><a href="#什么是Aop" class="headerlink" title="什么是Aop"></a>什么是Aop</h2><p>Aop是一种变成方式，它和OOP不同，OOP把系统看作是多个对象的交互，Aop把系统分解为不同的关注点，或者称之为切面(Aspect)</p>
+<blockquote>
+<p>在不修改源代码的情况下，为业务织入额外的增强处理</p>
+</blockquote>
+<p>实现AOP的方式有很多，例如JDK动态代理，静态代理都可以实现AOP的设计模式，Spring在IOC的环境下，可以快速的帮助我们实现相对简单易用的Aop</p>
+<p>在学习如何使用Spring来实现AOP之前，我们先了解一下在Aop中出现的几个专业术语</p>
+<ul>
+<li>Aspect:  切面 需要织入的增强业务</li>
+<li>pointCut:  切入点，需要织入增强业务的”位置” [目标方法]</li>
+<li>joinPoint:  连接点， 在成功织入后，用于获取原业务方法的方法结构与细节的对象</li>
+<li>advice：增强处理器， Spring提供了多种不同的增强处理器，例如前置增强处理器，后置增强处理器，异常增强处理器，环绕增强处理器</li>
+</ul>
+<h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a><strong>使用步骤</strong></h2><p>导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.15.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--        基于Aspects的AOP实现 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-aspects<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.15.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>定义切面类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">package</span> com.softeem.aspect;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.Objects;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Title</span>: MetricTimeAspect</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> Jiang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Package</span> com.softeem.service.aspect</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2024/7/13 14:07</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>: 切面类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">//需要被容器扫描到</span></span><br><span class="line"><span class="meta">@Aspect</span> <span class="comment">//表达该类为一个切面类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MetricTimeAspect</span> &#123;</span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(public * com.softeem.service.*.*(..))&quot;)</span> <span class="comment">//选择切点</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">pointCut</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*@Before(&quot;pointCut()&quot;) //在切点前织入增强业务</span></span><br><span class="line"><span class="comment">    public void before() &#123;</span></span><br><span class="line"><span class="comment">        Date start = new Date();</span></span><br><span class="line"><span class="comment">        System.out.println(&quot;start = &quot; + start);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    @After(&quot;pointCut()&quot;) //在切点后织入增强业务</span></span><br><span class="line"><span class="comment">    public void after() &#123;</span></span><br><span class="line"><span class="comment">        Date end = new Date();</span></span><br><span class="line"><span class="comment">        System.out.println(&quot;end = &quot; + end);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    //在目标方法返回后执行</span></span><br><span class="line"><span class="comment">    @AfterReturning(&quot;pointCut()&quot;)</span></span><br><span class="line"><span class="comment">    public void afterReturning() &#123;</span></span><br><span class="line"><span class="comment">        System.out.println(&quot;已执行完该方法&quot;);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    //在目标方法出现异常后执行</span></span><br><span class="line"><span class="comment">    @AfterThrowing(pointcut = &quot;pointCut()&quot;, throwing = &quot;ex&quot;)</span></span><br><span class="line"><span class="comment">    public void afterReturning(Exception ex) &#123;</span></span><br><span class="line"><span class="comment">        System.out.println(&quot;原业务执行异常&quot;);</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">////    @Around()  环绕增强 包裹住原业务</span></span><br><span class="line">    <span class="meta">@Around(&quot;pointCut()&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">around</span><span class="params">(ProceedingJoinPoint pj)</span> &#123;</span><br><span class="line">        <span class="type">Date</span> <span class="variable">start</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">        System.out.println(<span class="string">&quot;前置增强 &quot;</span> + start);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            pj.proceed();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;原业务执行异常&quot;</span>);</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="type">Date</span> <span class="variable">end</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">            System.out.println(<span class="string">&quot;后置增强 &quot;</span> + end);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;返回结果&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="更好的装配方式"><a href="#更好的装配方式" class="headerlink" title="更好的装配方式"></a>更好的装配方式</h2><p>我们通过定义 pointCut 可以将切面中的增强处理织入到指定的包下的方法中，但是通过表达式去定义这种方式，范围太大了，有的时候有些方法不需要我们织入增强处理， 像这种情况我们该如何去设计</p>
+<p>在实践中，非常推荐使用一种通过自定义注解绑定 pointCut的方式，这种方式更加灵活，标记了注解的方法或类就可以启用AOP，没有标记则不启用。</p>
+<p>首先我们定义一个注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.softeem.annotation;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 元注解 ： 修饰注解的注解</span></span><br><span class="line"><span class="comment">// 元数据： 描述数据的数据</span></span><br><span class="line"><span class="meta">@Target(&#123;ElementType.METHOD&#125;)</span></span><br><span class="line"><span class="comment">// 在运行过程中该注解可以被读取</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MetricTime &#123;</span><br><span class="line">    String <span class="title function_">name</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后再定义切面的时候，将自定义注解和增强处理方法进行绑定</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Around(&quot;@annotation(metricTime)&quot;)</span></span><br><span class="line"><span class="keyword">public</span> Object <span class="title function_">aroundAdvice</span><span class="params">(ProceedingJoinPoint pj, MetricTime metricTime)</span>&#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> metricTime.name();</span><br><span class="line">    System.out.println(name+<span class="string">&quot; 方法开始执行...&quot;</span>);</span><br><span class="line">    <span class="type">long</span> <span class="variable">begin</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">    <span class="type">Object</span> <span class="variable">result</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        result = pj.proceed();</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Throwable ex)&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;出现异常 ex:&quot;</span>+ex</span><br><span class="line">                .getMessage());</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="type">long</span> <span class="variable">end</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">        System.out.println(<span class="string">&quot;执行时间为&quot;</span>+(end-begin)+<span class="string">&quot;ms&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接着，只要我们的业务方法上标记了 <code>@MetricTime</code> 就可以启用切面中的增强处理了，这种方式相较于表达式的方式更加灵活，是一种更加推荐的方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@MetricTime(name = &quot;service1&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">service1</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;service1!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">service2</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;service2!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="AOP细节"><a href="#AOP细节" class="headerlink" title="AOP细节"></a>AOP细节</h2><p>Spring中的AOP是基于JDK的动态代理实现的，但是如果当前被代理的类，是一个没有接口的类Spring会自动切换成<code>CGLIB</code>来进行代理 , <code>CGLIB</code> 是一种基于字节码的工具， Spring在发现被代理类没有接口时会使用<code>cglib</code>创建一个子类继承被代理类，并重写所有方法。需要注意的是<code>cglib</code> 只会关注方法，不会关注成员属性，即原本被代理类的属性在<code>cglib</code> 创建的子类中为 <code>null</code> </p>
+<p><strong>Spring  Ioc Aop相关面试题重难点汇总</strong></p>
+<ol>
+<li><p>Spring 是什么 ?</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Spring是一个轻量级的IOC和AOP的容器框架。 是为Java应用程序提供基础服务的一套框架，目的是用于简化企业级应用程序的开发， 使得开发者只需要关注业务需求本身。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Spring的IOC理解</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IOC, Inversion of Control ,控制反转，指将对象的控制权转移交给Spring框架，由Spring来负责控制对象的生命周期（比如创建，销毁） 和对象之间的依赖关系(自动装配)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Spring DI是什么?</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Di Dependency injection, 依赖注入起始就是控制反转后对于依赖对象由Spring进行动态注入的一种形式，只需要简单的通过注解就可以注入需要的bean实例， 让我们的业务Bean只需要关注业务本身</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Spring的IOC原理</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Spring IOC（Inversion of Control，控制反转）是Spring框架的核心，其原理主要基于依赖注入（Dependency Injection，DI）。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Spring的Aop是什么</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Aop 一般称为面向切面编程，作为面向对象编程的一种补充， 在不修改源代码的前提下，为原业务织入额外的增强处理内容。</span><br><span class="line">Spring 对Aop编程提供了支持，Spring使用jdk的动态代理和cglib 让我们通过编写切面类和增强处理器，轻松实现Aop</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/07/13/spring-aop/" data-id="clyn7462r0003jw7dh1ut63rz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring/" rel="tag">spring</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/07/14/spring-web/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          spring-web
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/07/12/spring-ioc/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">spring-ioc</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/07/15/springboot/">springboot</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/14/Mybatis/">Mybatis</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/14/spring-web/">spring-web</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/13/spring-aop/">spring-aop</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/12/spring-ioc/">spring-ioc</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <div id="footer">
+  
+  <div id='foot-stars'></div>
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Jiang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</div>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

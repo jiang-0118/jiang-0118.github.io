@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JVM的学习 | 小姜的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="JVM整体结构  Java代码编译成为字节码(磁盘)  类加载子系统： 验证：验证加载到方法区的.class文件没有被篡改，保证文件正确。 准备：给我们定义static的变量分配内存并赋一个初始值 解析：将符号引用(类的名字)解析为直接引用(对应类的地址)  双亲委派：是 Java 类加载器机制中的一个重要概念，用于保证 Java 类的安全性和一致性。其基本思想是：在类加载的过程中，一个类加载器首">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM的学习">
+<meta property="og:url" content="http://example.com/2024/07/11/JVM%E7%9A%84%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="小姜的博客">
+<meta property="og:description" content="JVM整体结构  Java代码编译成为字节码(磁盘)  类加载子系统： 验证：验证加载到方法区的.class文件没有被篡改，保证文件正确。 准备：给我们定义static的变量分配内存并赋一个初始值 解析：将符号引用(类的名字)解析为直接引用(对应类的地址)  双亲委派：是 Java 类加载器机制中的一个重要概念，用于保证 Java 类的安全性和一致性。其基本思想是：在类加载的过程中，一个类加载器首">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/image-20240710195916590.png">
+<meta property="og:image" content="http://example.com/images/image-20240710201123840.png">
+<meta property="og:image" content="http://example.com/images/image-20240710201958626.png">
+<meta property="og:image" content="http://example.com/images/image-20240710210521891.png">
+<meta property="og:image" content="http://example.com/images/image-20240710210907464.png">
+<meta property="og:image" content="http://example.com/images/image-20240710211317783.png">
+<meta property="og:image" content="http://example.com/images/image-20240711152741958.png">
+<meta property="og:image" content="http://example.com/images/image-20240711152839920.png">
+<meta property="og:image" content="http://example.com/images/image-20240711153514792.png">
+<meta property="og:image" content="http://example.com/images/image-20240711154220413.png">
+<meta property="og:image" content="http://example.com/images/image-20240711155610575.png">
+<meta property="og:image" content="http://example.com/images/image-20240711155854256.png">
+<meta property="og:image" content="http://example.com/images/image-20240711160059267.png">
+<meta property="og:image" content="http://example.com/images/image-20240711160654480.png">
+<meta property="og:image" content="http://example.com/images/image-20240711160900730.png">
+<meta property="og:image" content="http://example.com/images/image-20240711161440047.png">
+<meta property="article:published_time" content="2024-07-11T09:04:05.000Z">
+<meta property="article:modified_time" content="2024-07-11T12:42:33.800Z">
+<meta property="article:author" content="Jiang">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/image-20240710195916590.png">
+<meta name="twitter:creator" content="@coolwuxing">
+  
+    <link rel="alternative" href="/atom.xml" title="小姜的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-43935113-3', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div id="header">
+  <div id="banner">
+    <div id="cover"></div>
+    <div id="stars"></div>
+  </div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">小姜的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="outer">
+        <section id="main"><article id="post-JVM的学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/07/11/JVM%E7%9A%84%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time datetime="2024-07-11T09:04:05.000Z" itemprop="datePublished">2024-07-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JVM的学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>JVM整体结构</strong></p>
+<p><img src="/images/image-20240710195916590.png" alt="image-20240710195916590"></p>
+<p><strong>Java代码编译成为字节码(磁盘)</strong></p>
+<p><img src="/images/image-20240710201123840.png" alt="image-20240710201123840"></p>
+<p><strong>类加载子系统</strong>：</p>
+<p>验证：验证加载到方法区的.class文件没有被篡改，保证文件正确。</p>
+<p>准备：给我们定义static的变量分配内存并赋一个初始值</p>
+<p>解析：将符号引用(类的名字)解析为直接引用(对应类的地址)</p>
+<p><img src="/images/image-20240710201958626.png" alt="image-20240710201958626"></p>
+<p>双亲委派：是 Java 类加载器机制中的一个重要概念，用于保证 Java 类的安全性和一致性。其基本思想是：在类加载的过程中，一个类加载器首先会委托其父类加载器去尝试加载某个类，只有在父类加载器无法加载该类时，子类加载器才会尝试自己加载。</p>
+<p><img src="/images/image-20240710210521891.png" alt="image-20240710210521891"></p>
+<p>方法区和堆是共享的(多个线程中使用同一个类是可以共享的)。</p>
+<p>**程序计数器(PC Register)**：</p>
+<p><img src="/images/image-20240710210907464.png" alt="image-20240710210907464"></p>
+<p>**虚拟机栈(Java方法栈)**：FILO先进后出</p>
+<p><img src="/images/image-20240710211317783.png" alt="image-20240710211317783"></p>
+<p><strong>本地方法栈</strong>：</p>
+<p><img src="/images/image-20240711152741958.png" alt="image-20240711152741958"></p>
+<p><strong>堆</strong>：</p>
+<p><img src="/images/image-20240711152839920.png" alt="image-20240711152839920"><img src="/images/image-20240711153514792.png" alt="image-20240711153514792"><img src="/images/image-20240711154220413.png" alt="image-20240711154220413"></p>
+<h6 id="为什么要垃圾回收？"><a href="#为什么要垃圾回收？" class="headerlink" title="为什么要垃圾回收？"></a><strong>为什么要<u>垃圾回收</u>？</strong></h6><p><strong>垃圾是指在JVM中没有任何引用指向它的对象，如果不清理这些垃圾，那么它们会一直占用着内存，不能给其他对象使用，最终导致垃圾对象越来越多，就会出现<u>OOM</u>了。</strong></p>
+<h6 id="垃圾标记阶段：也就是找到JVM中-主要是堆中-有哪些垃圾对象，有两种方式："><a href="#垃圾标记阶段：也就是找到JVM中-主要是堆中-有哪些垃圾对象，有两种方式：" class="headerlink" title="垃圾标记阶段：也就是找到JVM中(主要是堆中)有哪些垃圾对象，有两种方式："></a>垃圾标记阶段：也就是找到JVM中(主要是堆中)有哪些垃圾对象，有两种方式：</h6><p><strong>引用计数法：</strong></p>
+<p><img src="/images/image-20240711155610575.png" alt="image-20240711155610575"></p>
+<p><strong>可达性分析法：</strong></p>
+<p><img src="/images/image-20240711155854256.png" alt="image-20240711155854256"><img src="/images/image-20240711160059267.png" alt="image-20240711160059267"></p>
+<p><strong>标记-清楚算法：</strong></p>
+<p><img src="/images/image-20240711160654480.png" alt="image-20240711160654480"></p>
+<p>优点：简单，容易想到，易实现</p>
+<p>缺点：碎片化内存过多</p>
+<p><strong>复制算法：</strong></p>
+<p><img src="/images/image-20240711160900730.png" alt="image-20240711160900730"></p>
+<p>优点：</p>
+<p>1.没有标记和清楚阶段，通过GC Roots找到可达对象，直接复制，不需要修改对象头，效率高。</p>
+<p>2.不会出现内存碎片。</p>
+<p>缺点：</p>
+<p>1.需要更多的内存，始终有一半的内存空闲。</p>
+<p>2.对象复制后，对象存放的内存地址发生了变化，需要额外的时间修改栈帧中记录的引用地址。</p>
+<p>3.如果可达对象比较多，垃圾对象比较少，那么复制算法的效率会比较低，所以垃圾对象多的情况下，复制算法比较合适。</p>
+<p><strong>标记-整理算法：</strong></p>
+<p><img src="/images/image-20240711161440047.png" alt="image-20240711161440047"></p>
+<p>标记-整理算法相当于标记-清楚算法执行完一次之后再进行一次内存整理。</p>
+<p>优点：不会出现内存碎片，不需要利用额外的内存空间</p>
+<p>缺点：效率要低于标记-清楚算法、复制算法，也需要修改栈帧中的引用地址</p>
+<table>
+<thead>
+<tr>
+<th align="left">总结</th>
+<th align="left">标记-清楚</th>
+<th align="left">标记-整理</th>
+<th align="left">复制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">速度</td>
+<td align="left">中等</td>
+<td align="left">最慢</td>
+<td align="left">最快</td>
+</tr>
+<tr>
+<td align="left">空间开销</td>
+<td align="left">少（有碎片）</td>
+<td align="left">少（无碎片）</td>
+<td align="left">最多</td>
+</tr>
+<tr>
+<td align="left">移动对象</td>
+<td align="left">否</td>
+<td align="left">是</td>
+<td align="left">是</td>
+</tr>
+</tbody></table>
+<h3 id="方法区："><a href="#方法区：" class="headerlink" title="方法区："></a><strong>方法区</strong>：</h3><p>​      a. 有时候也成为永久代，在该区内很少发生垃圾回收，但是并不代表不发生GC，在这里进行的GC主要是对方法区里的常量池和对类型的卸载</p>
+<p>​    b. 方法区主要用来存储已被虚拟机加载的类的信息、常量、静态变量和即时编译器编译后的代码等数据。</p>
+<p>​    c. 该区域是被线程共享的。</p>
+<p>​    d. 方法区里有一个运行时常量池，用于存放静态编译产生的字面量和符号引用。该常量池具有动态性，也就是说常量并不一定是编译时确定，运行时生成的常量也会存在这个常量池中。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/07/11/JVM%E7%9A%84%E5%AD%A6%E4%B9%A0/" data-id="clyn7462a0000jw7daqeq4iru" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/07/12/spring-ioc/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          spring-ioc
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/07/15/springboot/">springboot</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/14/Mybatis/">Mybatis</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/14/spring-web/">spring-web</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/13/spring-aop/">spring-aop</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/12/spring-ioc/">spring-ioc</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <div id="footer">
+  
+  <div id='foot-stars'></div>
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Jiang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</div>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

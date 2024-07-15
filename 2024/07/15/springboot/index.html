@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>springboot | 小姜的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="SpringBoot什么是SpringBoot基于Spring的脚手架工具，用于帮助我们快速构建基于Spring的Java应用。 比如现阶段开发Java应用的首选一定是Spring，那么在选择Spring的时候，我们的第一件事也一定是搭建一个Spring的环境，比如首先我们需要IOC的支持，那就需要导入 spring-context 的依赖，比如我们需要构建的是Web工程，我们就需要导入 Spri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springboot">
+<meta property="og:url" content="http://example.com/2024/07/15/springboot/index.html">
+<meta property="og:site_name" content="小姜的博客">
+<meta property="og:description" content="SpringBoot什么是SpringBoot基于Spring的脚手架工具，用于帮助我们快速构建基于Spring的Java应用。 比如现阶段开发Java应用的首选一定是Spring，那么在选择Spring的时候，我们的第一件事也一定是搭建一个Spring的环境，比如首先我们需要IOC的支持，那就需要导入 spring-context 的依赖，比如我们需要构建的是Web工程，我们就需要导入 Spri">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-15T15:06:15.000Z">
+<meta property="article:modified_time" content="2024-07-15T15:31:15.745Z">
+<meta property="article:author" content="Jiang">
+<meta property="article:tag" content="springboot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@coolwuxing">
+  
+    <link rel="alternative" href="/atom.xml" title="小姜的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-43935113-3', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div id="header">
+  <div id="banner">
+    <div id="cover"></div>
+    <div id="stars"></div>
+  </div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">小姜的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="outer">
+        <section id="main"><article id="post-springboot" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/07/15/springboot/" class="article-date">
+  <time datetime="2024-07-15T15:06:15.000Z" itemprop="datePublished">2024-07-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      springboot
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h1><h2 id="什么是SpringBoot"><a href="#什么是SpringBoot" class="headerlink" title="什么是SpringBoot"></a>什么是SpringBoot</h2><p>基于Spring的脚手架工具，用于帮助我们快速构建基于Spring的Java应用。</p>
+<p>比如现阶段开发Java应用的首选一定是Spring，那么在选择Spring的时候，我们的第一件事也一定是搭建一个Spring的环境，比如首先我们需要IOC的支持，那就需要导入 <code>spring-context</code> 的依赖，比如我们需要构建的是Web工程，我们就需要导入 <code>Spring-webmvc</code> 的依赖，并且为了保证其正确的解析请求body,我们还需要额外导入例如针对JSON的 <code>Jackson</code> 或者针对二进制数据的 <code>commons-fileupload</code> 等依赖，并在依赖导入完成之后对其进行进一步的配置。 例如对于Web的工程来说，我们起码需要在IOC中配置以下Bean</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对controller最终返回的 modelandview进行解析</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line">ViewResolver <span class="title function_">viewResolver</span><span class="params">()</span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 负责解析参数中的二进制数据</span></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line">MutipartResolver <span class="title function_">mutipartResolver</span><span class="params">()</span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>包括如果我们需要Spring提供数据层的支持,同样我们也需要手动去配置和管理数据源</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">DataSource <span class="title function_">datasource</span><span class="params">()</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述的操作，几乎所有的Spring工程都会做同样的操作，这种操作费时费力，不仅仅让应用的开发步骤变得更加繁琐，而且产生大量的重复操作，不符合工程化思想。所以<code>SpringBoot</code> 就诞生了. <strong>SpringBoot最大的特点就是其 提供了大量的默认配置，这些配置会根据当前应用的环境自行判断是否需要加载</strong></p>
+<p>SpringBoot就是一台可以直接上路的汽车， 如果有特殊的要求，比如我们需要把普通发动机更换成涡轮增压, 就可以通过配置少量代码来实现</p>
+<p>SpringBoot的目标就是一个开箱即用的应用架构，我们基于SpringBoot的预置结构开发就可以省时省力。</p>
+<p><strong>SpringBoot的版本问题</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Spring Boot 2.x</th>
+<th>Spring Boot 3.x</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Spring版本</td>
+<td>Spring 5.x</td>
+<td>Spring 6.x</td>
+</tr>
+<tr>
+<td>JDK版本</td>
+<td>&gt;&#x3D; 1.8</td>
+<td>&gt;&#x3D; 17</td>
+</tr>
+<tr>
+<td>Tomcat版本</td>
+<td>9.x</td>
+<td>10.x</td>
+</tr>
+<tr>
+<td>Annotation包</td>
+<td>javax.annotation</td>
+<td>jakarta.annotation</td>
+</tr>
+<tr>
+<td>Servlet包</td>
+<td>javax.servlet</td>
+<td>jakarta.servlet</td>
+</tr>
+<tr>
+<td>JMS包</td>
+<td>javax.jms</td>
+<td>jakarta.jms</td>
+</tr>
+<tr>
+<td>JavaMail包</td>
+<td>javax.mail</td>
+<td>jakarta.mail</td>
+</tr>
+</tbody></table>
+<p>如何构建一个标准的SpringBoot应用</p>
+<p>引入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.6.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--    单项目推荐继承Spring-boot-parent--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>编写启动类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.softeem;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 主配置类</span></span><br><span class="line"><span class="comment">// 主配置  扫描其他Bean  开启某些支持</span></span><br><span class="line"><span class="comment">// 启动web容器</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span>   <span class="comment">//@EnableAutoConfiguration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AppConfig</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 启动Spring应用</span></span><br><span class="line">        <span class="comment">//  1. WEB容器先启动-----&gt;</span></span><br><span class="line">        <span class="comment">//      DispatcherServlet</span></span><br><span class="line">        <span class="comment">//  2. WEB容器启动的同时，初始化IOC容器</span></span><br><span class="line">        SpringApplication.run(AppConfig.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果我们想要搭建一个支持持久层的环境，包括事务，和数据操作该如何实现呢?</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># yaml 文件 使用缩进层级解决了冗余问题</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8081</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/test?serverTimezone=UTC</span></span><br><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="attr">mapper-locations:</span> <span class="string">classpath:mapper/*.xml</span></span><br><span class="line">  <span class="attr">configuration:</span></span><br><span class="line">    <span class="attr">log-impl:</span> <span class="string">org.apache.ibatis.logging.stdout.StdOutImpl</span></span><br></pre></td></tr></table></figure>
+
+<p>Mybatis的starter是提供了 <code>SqlSessionFactoryBean</code> 实例的自动配置方法的，它会根据当前的环境来决定是否要加载配置</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>SpringBoot支持两种不同形式的配置文件，一种是 <code>properties</code> 文件 一种是 <code>yaml</code> 文件，SpringBoot的配置文件非常重要，因为SpringBoot主要是通过自动配置来简化我们构建Spring应用的. 而自动配置往往需要我们，也就是用户提供一些自定义的<strong>配置项</strong> ,这些配置项数据就是通过配置文件，传递给自动配置类的。</p>
+<ul>
+<li>Properties: 使用键值对的方式进行配置，每个配置项都是key&#x3D; value 的格式。优点就是键值对格式相对简单不容易出错,易于理解和书写,比较适合简单的配置需求</li>
+<li>Yaml: 使用缩进和层级关系来构建配置，更好的表达复杂的配置，比如嵌套配置，列表，块等。因为语法缩进，所以可读性更好，也更好维护</li>
+</ul>
+<p>总结： Properties格式适合配置简单的配置，Yaml适合对可读性和维护性要求较高的场景，适合配置复杂的配置内容。</p>
+<h3 id="配置文件说明"><a href="#配置文件说明" class="headerlink" title="配置文件说明"></a>配置文件说明</h3><p>两种文件可以同时存在，但是在公司一般会安排你使用其中一种，如果一个配置项在两个文件中都出现了，会优先使用<code>.properties</code> 为后缀的文件。 <code>.properties</code> 文件的优先级最高，但是加载 <code>.properties</code> 之后还会加载 <code>yml</code> 配置文件的配置信息</p>
+<h3 id="配置文件的使用"><a href="#配置文件的使用" class="headerlink" title="配置文件的使用"></a>配置文件的使用</h3><p>在刚才的课程中，我们已经讲到配置文件，主要是向自动配置类，提供配置项, 但是除此之外，配置文件还可以向我们的程序提供文件中定义的数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;$&#123;server.port:8080&#125;&quot;)</span></span><br><span class="line"><span class="keyword">private</span> String port;</span><br><span class="line"></span><br><span class="line"><span class="meta">@PostConstruct</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">init</span><span class="params">()</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;server port: &quot;</span>+port);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="配置文件字符的表达方式"><a href="#配置文件字符的表达方式" class="headerlink" title="配置文件字符的表达方式"></a>配置文件字符的表达方式</h3><h4 id="配置项加不加引号的问题"><a href="#配置项加不加引号的问题" class="headerlink" title="配置项加不加引号的问题"></a>配置项加不加引号的问题</h4><ol>
+<li><p>不使用引号(裸值)</p>
+<p>通常情况下，不需要使用引号将值括起来。这种情况下，值会被解析成响应的数据类型，如字符串，整数，布尔</p>
+<p>使用场景： 适用于不包含特殊字符的情况</p>
+</li>
+<li><p>单引号</p>
+<p>单引号可以用来保留配置值中的 <strong>空格</strong> 或 <strong>特殊字符</strong>. 其中的值将按照原样进行解析，包括空格</p>
+<p>使用场景： 适用于需要保留空格，特殊字符或原始格式的配置项，如文件路径，密码，命令行参数</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">softeem.name</span>=<span class="string">&#x27;softeem app&#x27;</span></span><br><span class="line"><span class="attr">softeem.description</span>=<span class="string">&#x27;this is my app&#x27;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>双引号</p>
+<p>双引号提供字符串类型的配置值。其中将对值进行解析和处理，可以包含<strong>占位符，转义字符</strong></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">softeem.description</span>=<span class="string">&quot;this is my \&quot;awesome\&quot; application</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="设置不同环境的配置文件"><a href="#设置不同环境的配置文件" class="headerlink" title="设置不同环境的配置文件"></a>设置不同环境的配置文件</h3><p>在实际开发中，一个项目存在多种不同的环境。 自然配置文件也要适配不同的环境，例如开发环境配置文件，测试环境配置文件，生产环境配置文件…</p>
+<p><strong>SpringBoot在不同平台上的环境配置规则</strong></p>
+<ol>
+<li>必须存在主配置文件，主配置文件必须叫做 <code>application.properties</code> 或 <code>application.yml</code> </li>
+<li>每个平台都存在一个专属文件，配置文件名有要求，需要遵循 application-xxx.properties&#x2F;application-xxx.yml 格式</li>
+</ol>
+<p>示例:</p>
+<ul>
+<li><p>生产环境文件 : <code>application-dev.properties</code> </p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server.port</span>=<span class="string">6666</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开发环境文件: <code>application-prod.properties</code></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server.port</span>=<span class="string">7777</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试环境文件: <code>application-test.properties</code></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server.port</span>=<span class="string">8888</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>主配置文件: <code>application.properties</code> </p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring.application.name</span>=<span class="string">myapp</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="SpringBoot自动配置原理"><a href="#SpringBoot自动配置原理" class="headerlink" title="SpringBoot自动配置原理"></a>SpringBoot自动配置原理</h2><ul>
+<li>SpringFactoriesLoader： Spring专门用于读取 spring.factories文件的Bean信息的</li>
+</ul>
+<p><strong>springboot的自动配置原理</strong></p>
+<p>自动配置原理的核心就是spring的启动类上有一个 @SpringBootApplication 注解，该注解会启用自动配置 @EnableAutoConfiguration ，在启用自动配置的同时导入一个 AutoConfigurationImportSelector的类，该类会通过 SpringFactoriesLoader 去加载所有META-INF下的spring.factories文件，在这个文件中就定义了所有需要加载的自动配置类，这些类会根据@Conditional注解来决定是否加载自身配置</p>
+<ul>
+<li>@ConditionalOnClass: </li>
+<li>@ConditionalOnMissingBean:</li>
+<li>@ConditionalOnWebApplication:</li>
+<li>…..</li>
+</ul>
+<h2 id="加载配置文件"><a href="#加载配置文件" class="headerlink" title="加载配置文件"></a>加载配置文件</h2><p>加载配置文件可以直接使用注解 <code>@Value</code> ，例如我们在YML中提前定义好的配置项，可以直接通过<code>@Value</code> 进行注入。</p>
+<p>为了更好的管理配置，springboot允许创建一个Bean, 持有一组配置，并由SpringBoot自动注入。以腾讯云的COS服务为例，假设我们在yml中设置了以下配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">qqcloud:</span></span><br><span class="line">  <span class="attr">secret_id:</span> <span class="string">AKIDPkz2EQbvETf5NXcZSErLfqz783wqmhdd</span></span><br><span class="line">  <span class="attr">secret_key:</span> <span class="string">zqYIwTqDlS90w3CKZnv6PkFkQA2z49O0</span></span><br><span class="line">  <span class="attr">region:</span> <span class="string">ap-nanjing</span></span><br><span class="line">  <span class="attr">bucketName:</span> <span class="string">j2401-1302895443</span></span><br><span class="line">  <span class="attr">img_url:</span> <span class="string">https://j2401-1302895443.cos.ap-nanjing.myqcloud.com/</span></span><br></pre></td></tr></table></figure>
+
+<p>首先可以定义一个JavaBean，持有该组配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.softeem.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.AllArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> lombok.Getter;</span><br><span class="line"><span class="keyword">import</span> lombok.NoArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> lombok.Setter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">QCloudConfigurationProperties</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String secretId;</span><br><span class="line">    <span class="keyword">private</span> String secretKey;</span><br><span class="line">    <span class="keyword">private</span> String region;</span><br><span class="line">    <span class="keyword">private</span> String bucketName;</span><br><span class="line">    <span class="keyword">private</span> String imgUrl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>保证JavaBean的属性名称和配置项一致即可,然后需要添加两个重要的注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ConfigurationProperties(prefix=&quot;qqcloud&quot;)</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">QCloudConfigurationProperties</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String secretId;</span><br><span class="line">    <span class="keyword">private</span> String secretKey;</span><br><span class="line">    <span class="keyword">private</span> String region;</span><br><span class="line">    <span class="keyword">private</span> String bucketName;</span><br><span class="line">    <span class="keyword">private</span> String imgUrl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>IOC容器在创建该Bean时会发现该Bean是一个配置属性Bean，所以会自动去YAML中查找对应的配置项，并帮助我们自动为其复制，在使用的时候直接使用即可。</p>
+<h2 id="使用Actuator"><a href="#使用Actuator" class="headerlink" title="使用Actuator"></a>使用Actuator</h2><p>SpringBoot内置了一套监控功能，叫做<code>Actuator</code> , 它可以通过暴露端点的方式，通过访问获取服务器的状态</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在yml中可以定义暴露更多的端点给web</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">management:</span></span><br><span class="line">  <span class="attr">endpoints:</span></span><br><span class="line">    <span class="attr">web:</span></span><br><span class="line">      <span class="attr">exposure:</span></span><br><span class="line">        <span class="attr">include:</span> <span class="string">health,</span> <span class="string">info</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="使用Security"><a href="#使用Security" class="headerlink" title="使用Security"></a>使用Security</h2><p>Spring Security 是一款基于Spring的安全框架，主要提供了认证和授权的一些相关封装，让我们可以构建出更加安全和健壮的系统. 它的底层是一系列的过滤器组成的(过滤器链).当请求到达web容器后，会经过security的一系列过滤处理，最终进行校验之后才可以到达我们的接口，从而提升安全性。 </p>
+<p>登录认证是所有系统都会拥有的基本功能，也是最重要的功能。怎么把登录认证做好就非常的关键。 Http协议是无状态的协议，无状态也就是无记忆，服务器不会知道本次请求是谁发的，不会知道本次请求是否已经登录过, 登录认证的核心就是想办法让服务器<strong>有状态</strong> ， 想要实现<strong>有状态</strong> 核心其实就是 <strong>凭证</strong> 。</p>
+<p>实现凭证的方式一般有两种，一种是 session 模式，就是利用服务器会话去记录用户信息，同时利用Session向客户端颁发cookie凭证，cookie在随后的请求中会伴随请求携带，服务器会自动校验cookie中的sessionID，找到对应的session</p>
+<p>另一种则是token模式， 服务器通过某种方式&#x2F;算法生成一个用来标识用户身份的<strong>字符串</strong>， 通过响应给客户端，并和客户端约定随后请求的传递方式，在后续请求中，对token进行校验解析，从而认证身份 。</p>
+<p>但是一个健壮的程序往往又不止登录认证，或者说，登录认证的处理的同时还需要去注意一些例如:</p>
+<ul>
+<li>网络攻击行为</li>
+<li>非法参数</li>
+<li>请求幂等</li>
+</ul>
+<p>等问题,这个时候除了我们上述的凭证以外，我们还需要额外的精力去解决上述问题。 这些问题的解决方式也一定是通过统一入口进行处理也就是<strong>过滤器</strong> . Security框架提供了一组过滤器，帮助我们去解决一部分的上述问题，而登录认证可以让我们自由定义，并不影响过滤j结构.</p>
+<p>使用Security在SpringBoot中非常简单，只需要导入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--        安全框架--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-security<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Authentication: 认证</p>
+<p>Authorization:  授权</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/07/15/springboot/" data-id="clyn7462w0008jw7dgyt87t1c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/07/14/Mybatis/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Mybatis</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/07/15/springboot/">springboot</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/14/Mybatis/">Mybatis</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/14/spring-web/">spring-web</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/13/spring-aop/">spring-aop</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/12/spring-ioc/">spring-ioc</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <div id="footer">
+  
+  <div id='foot-stars'></div>
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Jiang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</div>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
