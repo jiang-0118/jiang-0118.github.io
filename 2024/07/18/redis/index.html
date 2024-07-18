@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>redis | 小姜的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="RedisRedis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets），带有范围查询的 有序集合（sorted sets） ， bitmaps， hyperloglogs 和 地理空间（geospatial） 索引。 Redis 内置了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis">
+<meta property="og:url" content="http://example.com/2024/07/18/redis/index.html">
+<meta property="og:site_name" content="小姜的博客">
+<meta property="og:description" content="RedisRedis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets），带有范围查询的 有序集合（sorted sets） ， bitmaps， hyperloglogs 和 地理空间（geospatial） 索引。 Redis 内置了">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-18T00:32:09.000Z">
+<meta property="article:modified_time" content="2024-07-18T00:32:40.283Z">
+<meta property="article:author" content="Jiang">
+<meta property="article:tag" content="redis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@coolwuxing">
+  
+    <link rel="alternative" href="/atom.xml" title="小姜的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-43935113-3', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div id="header">
+  <div id="banner">
+    <div id="cover"></div>
+    <div id="stars"></div>
+  </div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">小姜的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="outer">
+        <section id="main"><article id="post-redis" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/07/18/redis/" class="article-date">
+  <time datetime="2024-07-18T00:32:09.000Z" itemprop="datePublished">2024-07-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      redis
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><p>Redis 是一个开源（BSD许可）的，<strong>内存中</strong>的数据结构存储系统，它可以用作数据库、缓存和消息中间件。它支持<strong>多种类型</strong>的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets），带有范围查询的 有序集合（sorted sets） ， bitmaps， hyperloglogs 和 地理空间（geospatial） 索引。 Redis 内置了 主从复制（replication）， LUA脚本（Lua scripting）， LRU驱动事件（LRU eviction）， 事务（transactions） 和不同级别的 磁盘<strong>持久化</strong>（persistence）， 并通过 Redis哨兵（Sentinel） 和自动 分区（Cluster）提供<strong>高可用性</strong>（high availability）</p>
+<p>Redis 是 key-value 型数据库，键（Key）命令是 Redis 中经常使用的命令。常用的键命令如下所示：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/del.html">DEL</a></td>
+<td>用于删除 key</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/dump.html">DUMP</a></td>
+<td>序列化给定 key ，并返回被序列化的值</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/exists.html">EXISTS</a></td>
+<td>检查给定 key 是否存在</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/expire.html">EXPIRE</a></td>
+<td>为给定 key 设置过期时间</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/expireat.html">EXPIREAT</a></td>
+<td>用于为 key 设置过期时间，接受的时间参数是 UNIX 时间戳</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/pexpire.html">PEXPIRE</a></td>
+<td>设置 key 的过期时间，以毫秒计</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/pexpireat.html">PEXPIREAT</a></td>
+<td>设置 key 过期时间的时间戳(unix timestamp)，以毫秒计</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/keys.html">KEYS</a></td>
+<td>查找所有符合给定模式的 key</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/move.html">MOVE</a></td>
+<td>将当前数据库的 key 移动到给定的数据库中</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/persist.html">PERSIST</a></td>
+<td>移除 key 的过期时间，key 将持久保持</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/pttl.html">PTTL</a></td>
+<td>以毫秒为单位返回 key 的剩余的过期时间</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/ttl.html">TTL</a></td>
+<td>以秒为单位，返回给定 key 的剩余生存时间(</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/randomkey.html">RANDOMKEY</a></td>
+<td>从当前数据库中随机返回一个 key</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/rename.html">RENAME</a></td>
+<td>修改 key 的名称</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/renamenx.html">RENAMENX</a></td>
+<td>仅当 newkey 不存在时，将 key 改名为 newkey</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://redis.com.cn/commands/type.html">TYPE</a></td>
+<td>返回 key 所储存的值的类型</td>
+</tr>
+</tbody></table>
+<h2 id="Redis五大基本数据类型"><a href="#Redis五大基本数据类型" class="headerlink" title="Redis五大基本数据类型"></a>Redis五大基本数据类型</h2><ol>
+<li><p>String（字符串）</p>
+<p>添加，查询，追加，获取长度，判断是否存在的操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set username zhangsan  #  添加一个usernamekey 值为张三</span><br><span class="line">get username  # 获取key username对应的值</span><br><span class="line">exists username # 查看username key是否存在</span><br><span class="line">append username 123 # 在key username的值后追加 123进行拼接</span><br><span class="line">strlen username # 返回key username 的值的长度</span><br></pre></td></tr></table></figure>
+
+<p>自增，自减操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">set number 0 # 插入一个key number的值 0</span><br><span class="line">get number # 获取值0</span><br><span class="line">&quot;0&quot;</span><br><span class="line">incr number # 指定key为number的value自增1</span><br><span class="line">decr number # 指定key为number的value自减1</span><br><span class="line"></span><br><span class="line">incrby number 10 #指定number key的value 自增 10</span><br><span class="line">decrby number 5 # 指定number key的value 自减 5</span><br></pre></td></tr></table></figure>
+
+<p>截取，替换操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">getrange username 0 4 # 等同于java中的 substring方法，下标从0开始，不会改变原来的数据</span><br><span class="line">getrange username 0 -1 # 等同于get username</span><br><span class="line"></span><br><span class="line">setrange username 0 s # 等同于java中的 replace方法，但是Redis中是指定下标进行替换</span><br></pre></td></tr></table></figure>
+
+<p>设置<strong>过期时间</strong>，<strong>不存在设置</strong>操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">当前key如果已经存在，想要添加过期时间</span></span><br><span class="line">expire username 10 # 设置usernamekey的有效时间为10秒</span><br><span class="line">ttl username # 查看key的剩余时间</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">当前key不存在，创建key并同时设置过期时间</span></span><br><span class="line">127.0.0.1:6379&gt; setex username2 20 lisi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get username2</span><br><span class="line">&quot;lisi&quot;</span><br><span class="line">127.0.0.1:6379&gt; ttl username2</span><br><span class="line">(integer) 14</span><br><span class="line">127.0.0.1:6379&gt; ttl username2</span><br><span class="line">(integer) 12</span><br><span class="line">127.0.0.1:6379&gt; ttl username2</span><br><span class="line">(integer) 11</span><br><span class="line">127.0.0.1:6379&gt; ttl username2</span><br><span class="line">(integer) -2</span><br><span class="line">127.0.0.1:6379&gt; ttl username2</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">判断当前key是否已经存在，如果存在则添加失败 (分布式锁)</span></span><br><span class="line">127.0.0.1:6379&gt; setnx username2 lisi</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; get username2</span><br><span class="line">&quot;lisi&quot;</span><br><span class="line">127.0.0.1:6379&gt; setnx username zhangsan</span><br><span class="line">(integer) </span><br></pre></td></tr></table></figure>
+
+<p>mset，mget操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">批量的添加key和获取key的操作</span></span><br><span class="line">mset k1 v1 k2 v2 k3 v3  # 同时创建多个key和value</span><br><span class="line">mget k1 k2 k3 # 获取多个key的值</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">批量处理nx命令</span></span><br><span class="line">msetnx k4 v4 k5 v5 # 如果key不存在就创建</span><br><span class="line">msetnx k1 k2 k3 k6 # msetnx是一个原子性操作，事务上的原子性， 要么都成功要么都失败</span><br></pre></td></tr></table></figure>
+
+<p>总结：String 是redis中最常用的一种数据类型，也是Redis中最简单最基础的数据类型，表面上他是字符串，但是其实他也可以灵活的标识字符串，整数，浮点数3种值。 Redis会自动识别这3种值</p>
+</li>
+<li><p>Hash</p>
+<p>hset（添加hash）， hget(查询)，hgetall(查询所有)，hdel(删除hash中指定的值)，hlen（获取hash的长度），hexists(判断key是否存在)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hset myhash username zhangsan age 20</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; hget myhash age</span><br><span class="line">&quot;20&quot;</span><br><span class="line">127.0.0.1:6379&gt; hget myhash username</span><br><span class="line">&quot;zhangsan&quot;</span><br><span class="line">127.0.0.1:6379&gt; hgetall myhash</span><br><span class="line">1) &quot;username&quot;</span><br><span class="line">2) &quot;zhangsan&quot;</span><br><span class="line">3) &quot;age&quot;</span><br><span class="line">4) &quot;20&quot;</span><br><span class="line">127.0.0.1:6379&gt; hlen myhash</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; hexists myhash username</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hexists myhash age</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hexists myhash gender</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+<p>hkeys (查询所有的key) ，hvals(查询所有的值)，hincrby(指定hash的filed自增)，hsetnx(存在不添加)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hincrby myhash age 10</span><br><span class="line">(integer) 30</span><br><span class="line">127.0.0.1:6379&gt; hsetnx myhash username lisi</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+<p>总结： 比String更适合存对象</p>
+</li>
+<li><p>Set(集合) 元素唯一</p>
+<p>sadd(添加)，smembers(查看所有的元素)，sismember(判断元素是否存在)，scard(查看长度)，srem(移除元素)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; sadd set1 1 2 3 4</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; smembers set1</span><br><span class="line">1) &quot;1&quot;</span><br><span class="line">2) &quot;2&quot;</span><br><span class="line">3) &quot;3&quot;</span><br><span class="line">4) &quot;4&quot;</span><br><span class="line">127.0.0.1:6379&gt; sismember set1 1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sismember set1 a</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; scard set1</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; srem set1 2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; smembers set1</span><br><span class="line">1) &quot;1&quot;</span><br><span class="line">2) &quot;3&quot;</span><br><span class="line">3) &quot;4&quot;</span><br><span class="line">127.0.0.1:6379&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>srandmember(抽随机)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; srandmember set1 1   # 随机抽取set1中的1个元素</span><br><span class="line">1) &quot;3&quot;</span><br><span class="line">127.0.0.1:6379&gt; srandmember set1 1</span><br><span class="line">1) &quot;4&quot;</span><br><span class="line">127.0.0.1:6379&gt; srandmember set1 1</span><br><span class="line">1) &quot;3&quot;</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+<p>spop（随机删），smove（指定移动）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spop set1  # 随机删除一个元素 [count] 为删除数量，不写则为1</span><br><span class="line">smove set1 set2 3 # smove source destination member</span><br></pre></td></tr></table></figure>
+
+<p>sdiff(差集)，sinter(交集)，sunion(并集)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; sadd set1 1 2 3 4 5</span><br><span class="line">(integer) 5</span><br><span class="line">127.0.0.1:6379&gt; sadd set2 3 4 5 6 7</span><br><span class="line">(integer) 5</span><br><span class="line">127.0.0.1:6379&gt; sdiff set1 set2</span><br><span class="line">1) &quot;1&quot;</span><br><span class="line">2) &quot;2&quot;</span><br><span class="line">127.0.0.1:6379&gt; sdiff set2 set1</span><br><span class="line">1) &quot;6&quot;</span><br><span class="line">2) &quot;7&quot;</span><br><span class="line">127.0.0.1:6379&gt; sinter set1 set2</span><br><span class="line">1) &quot;3&quot;</span><br><span class="line">2) &quot;4&quot;</span><br><span class="line">3) &quot;5&quot;</span><br><span class="line">127.0.0.1:6379&gt; sunion set1 set2</span><br><span class="line">1) &quot;1&quot;</span><br><span class="line">2) &quot;2&quot;</span><br><span class="line">3) &quot;3&quot;</span><br><span class="line">4) &quot;4&quot;</span><br><span class="line">5) &quot;5&quot;</span><br><span class="line">6) &quot;6&quot;</span><br><span class="line">7) &quot;7&quot;</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+<p>总结： 可以实现共同好友，共同关注等功能需求</p>
+</li>
+<li><p>ZSET（有序集合）</p>
+<p>zadd(添加)，zrange(查询)，zrangebyscore(排序 小-大)，zrevrange(排序 大-小)，withscores(是否查询权重)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zadd zset1 1 one 2 two 3 three   # 添加的时候 zadd key score member</span><br><span class="line">zrange zset1 0 -1  # 获取当前zset中所有的member </span><br><span class="line">zrangebyscore zset1 -inf +inf   # start stop score的范围</span><br><span class="line">zrevrange zset1 1 -1  # 降序排索引</span><br><span class="line">zrange zset1 0 -1 withscores # 可以同时查询分数/权重</span><br></pre></td></tr></table></figure>
+
+<p>zrem(移除元素) ，zcard(查看元素的数量)， zcount（指定区间内的元素数量）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zrem zset1 one</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zrange zset1 0 -1</span><br><span class="line">1) &quot;two&quot;</span><br><span class="line">2) &quot;three&quot;</span><br><span class="line">127.0.0.1:6379&gt; zcard zset1</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; zcount zset1 0 100  # 查询指定区间内元素的个数</span><br></pre></td></tr></table></figure>
+
+<p>总结： 需要做排序的数据，可以使用zset， 成绩表，工资表，朋友圈动态 （Timeline）</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/07/18/redis/" data-id="clyqjexn10000bs7d2a852357" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/" rel="tag">redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/07/15/springboot/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">springboot</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">学习</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/07/18/redis/">redis</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/15/springboot/">springboot</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/14/Mybatis/">Mybatis</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/14/spring-web/">spring-web</a>
+          </li>
+        
+          <li>
+            <a href="/2024/07/13/spring-aop/">spring-aop</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <div id="footer">
+  
+  <div id='foot-stars'></div>
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Jiang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</div>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
