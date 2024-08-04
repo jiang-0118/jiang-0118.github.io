@@ -105,31 +105,31 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240803212940753.png" alt="image-20240803212940753"></p>
-<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240803214731174.png" alt="image-20240803214731174"></p>
-<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804103655639.png" alt="image-20240804103655639"></p>
-<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804103508817.png" alt="image-20240804103508817"></p>
-<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804103810487.png" alt="image-20240804103810487"></p>
+        <p><img src="/images/image-20240803212940753.png" alt="image-20240803212940753"></p>
+<p><img src="/images/image-20240803214731174.png" alt="image-20240803214731174"></p>
+<p><img src="/images/image-20240804103655639.png" alt="image-20240804103655639"></p>
+<p><img src="/images/image-20240804103508817.png" alt="image-20240804103508817"></p>
+<p><img src="/images/image-20240804103810487.png" alt="image-20240804103810487"></p>
 <p>也叫平衡多路查找树，可以有多个分支</p>
 <p>例：在三阶B-树中获取ID为7的数据</p>
-<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804104349606.png" alt="image-20240804104349606"></p>
+<p><img src="/images/image-20240804104349606.png" alt="image-20240804104349606"></p>
 <p>在B-数的结构下，首先对根节点进行检索，判断4&lt;7&lt;8，拿到磁盘指针；再对磁盘页3进行检索，判断6&lt;7，拿到磁盘指针；找到ID为7的数据，所以我们需要进行3次磁盘IO</p>
-<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804104544886.png" alt="image-20240804104544886"></p>
+<p><img src="/images/image-20240804104544886.png" alt="image-20240804104544886"></p>
 <p>如图所示，我们需要进行4此磁盘IO才能获取到ID为7的数据，相比于二叉树，数的高度降低了，磁盘IO次数也减少了，检索数据的性能自然而然就提高了</p>
 <p>缺点：<code>不适合需要用到范围查寻数据的场景</code></p>
 <p>例：在三阶B-树中获取ID&lt;6的数据</p>
-<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804105354781.png" alt="image-20240804105354781"></p>
+<p><img src="/images/image-20240804105354781.png" alt="image-20240804105354781"></p>
 <p>如图所示，我们需要频繁从根节点出发进行检索，直到检索到ID为6的数据，才能完成范围查寻，由此得出B-树结构下，范围查询的效率是比较低的</p>
-<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804105728875.png" alt="image-20240804105728875"></p>
-<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804105829454.png" alt="image-20240804105829454"></p>
+<p><img src="/images/image-20240804105728875.png" alt="image-20240804105728875"></p>
+<p><img src="/images/image-20240804105829454.png" alt="image-20240804105829454"></p>
 <p>B+树在B-树的基础上进行了三点优化</p>
 <p><code>1.将数据存储在叶子节点上，每一个节点都可以腾出更多的空间组织更多的节点，让树的高度降低；</code></p>
 <p><code>2.非叶子节点不存储数据，我们在寻址的过程中，需要不断的进行磁盘IO，拿到节点需要在内存中进行运算，而B+树结构下并未将数据附在节点上让整个检索的过程更加的快捷(运输过程时间变短)；</code></p>
 <p><code>3.通过双向指针链接每个叶子节点，极大的优化了范围查询的速度；</code></p>
 <p>例：在三阶B+树中获取ID&lt;6的数据</p>
-<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804111802272.png" alt="image-20240804111802272"></p>
+<p><img src="/images/image-20240804111802272.png" alt="image-20240804111802272"></p>
 <p>我们只需要先检索到ID为1的数据，再根据下一个节点的地址依次获取剩下的数据。</p>
-<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804191301155.png" alt="image-20240804191301155"></p>
+<p><img src="/images/image-20240804191301155.png" alt="image-20240804191301155"></p>
 <h4 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h4><p>1.聚簇索引将数据存储在索引树的叶子节点上</p>
 <p>2.聚簇索引可以减少一次查询，因为查询索引书的同时就能获得到数据</p>
 <p>3.聚簇索引的缺点是，对数据进行修改或删除操作时需要更新索引树，会增加系统的开销</p>
