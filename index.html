@@ -83,6 +83,80 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-索引" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2024/08/03/%E7%B4%A2%E5%BC%95/" class="article-date">
+  <time datetime="2024-08-03T13:19:03.000Z" itemprop="datePublished">2024-08-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2024/08/03/%E7%B4%A2%E5%BC%95/">索引</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240803212940753.png" alt="image-20240803212940753"></p>
+<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240803214731174.png" alt="image-20240803214731174"></p>
+<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804103655639.png" alt="image-20240804103655639"></p>
+<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804103508817.png" alt="image-20240804103508817"></p>
+<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804103810487.png" alt="image-20240804103810487"></p>
+<p>也叫平衡多路查找树，可以有多个分支</p>
+<p>例：在三阶B-树中获取ID为7的数据</p>
+<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804104349606.png" alt="image-20240804104349606"></p>
+<p>在B-数的结构下，首先对根节点进行检索，判断4&lt;7&lt;8，拿到磁盘指针；再对磁盘页3进行检索，判断6&lt;7，拿到磁盘指针；找到ID为7的数据，所以我们需要进行3次磁盘IO</p>
+<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804104544886.png" alt="image-20240804104544886"></p>
+<p>如图所示，我们需要进行4此磁盘IO才能获取到ID为7的数据，相比于二叉树，数的高度降低了，磁盘IO次数也减少了，检索数据的性能自然而然就提高了</p>
+<p>缺点：<code>不适合需要用到范围查寻数据的场景</code></p>
+<p>例：在三阶B-树中获取ID&lt;6的数据</p>
+<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804105354781.png" alt="image-20240804105354781"></p>
+<p>如图所示，我们需要频繁从根节点出发进行检索，直到检索到ID为6的数据，才能完成范围查寻，由此得出B-树结构下，范围查询的效率是比较低的</p>
+<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804105728875.png" alt="image-20240804105728875"></p>
+<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804105829454.png" alt="image-20240804105829454"></p>
+<p>B+树在B-树的基础上进行了三点优化</p>
+<p><code>1.将数据存储在叶子节点上，每一个节点都可以腾出更多的空间组织更多的节点，让树的高度降低；</code></p>
+<p><code>2.非叶子节点不存储数据，我们在寻址的过程中，需要不断的进行磁盘IO，拿到节点需要在内存中进行运算，而B+树结构下并未将数据附在节点上让整个检索的过程更加的快捷(运输过程时间变短)；</code></p>
+<p><code>3.通过双向指针链接每个叶子节点，极大的优化了范围查询的速度；</code></p>
+<p>例：在三阶B+树中获取ID&lt;6的数据</p>
+<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804111802272.png" alt="image-20240804111802272"></p>
+<p>我们只需要先检索到ID为1的数据，再根据下一个节点的地址依次获取剩下的数据。</p>
+<p><img src="C:\Users\姜以\AppData\Roaming\Typora\typora-user-images\image-20240804191301155.png" alt="image-20240804191301155"></p>
+<h4 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h4><p>1.聚簇索引将数据存储在索引树的叶子节点上</p>
+<p>2.聚簇索引可以减少一次查询，因为查询索引书的同时就能获得到数据</p>
+<p>3.聚簇索引的缺点是，对数据进行修改或删除操作时需要更新索引树，会增加系统的开销</p>
+<p>4.聚簇索引通常用于数据库系统中，主要用于提高查询效率</p>
+<h4 id="非聚簇索引（又称二级索引-辅助索引）"><a href="#非聚簇索引（又称二级索引-辅助索引）" class="headerlink" title="非聚簇索引（又称二级索引 &#x2F;  辅助索引）"></a>非聚簇索引（又称二级索引 &#x2F;  辅助索引）</h4><p>1.非聚簇索引不将数据存储在索引树的叶子节点上，而是存储在数据页中</p>
+<p>2.非聚簇索引在查询数据时需要两次查询，一次查询索引树，获取数据页的地址，再通过数据页的地址查询数据（通常情况下来说是的，但如果索引覆盖的话实际上是不用回表的）</p>
+<p>3.非聚簇索引的优点是，对数据进行修改或删除操作时不需要更新索引树，减少了系统的开销</p>
+<p>4.非聚簇索引通常用于数据库系统中，主要用于提高数据更新和删除操作的效率</p>
+<h4 id="最左前缀原则"><a href="#最左前缀原则" class="headerlink" title="最左前缀原则"></a>最左前缀原则</h4><p>顾名思义是最左优先，以最左边的为起点任何连续的索引都能匹配上。</p>
+<p>如果没有第一列的话，直接访问第二列，那第二列肯定是无序的，直接访问后面的列就用不到索引了</p>
+<p>当创建(a,b,c)复合索引时，想要索引生效的话，只能使用 a和ab、ac和abc三种组合！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/08/03/%E7%B4%A2%E5%BC%95/" data-id="clzficee400001w7d2o98hi7s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-redis" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2024/07/18/redis/" class="article-date">
@@ -949,7 +1023,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -958,7 +1032,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a>
+      <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Mybatis/" style="font-size: 10px;">Mybatis</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 20px;">spring</a> <a href="/tags/springboot/" style="font-size: 10px;">springboot</a>
     </div>
   </div>
 
@@ -967,7 +1041,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">7</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">八月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">七月 2024</a><span class="archive-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -977,6 +1051,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2024/08/03/%E7%B4%A2%E5%BC%95/">索引</a>
+          </li>
         
           <li>
             <a href="/2024/07/18/redis/">redis</a>
@@ -992,10 +1070,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2024/07/14/spring-web/">spring-web</a>
-          </li>
-        
-          <li>
-            <a href="/2024/07/13/spring-aop/">spring-aop</a>
           </li>
         
       </ul>
